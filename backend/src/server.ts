@@ -100,3 +100,5 @@ app.get('/ads/:id/discord', async (request, response) => {
 app.listen(3000, () => {
     console.log("Running in localhost:3000...");
 });
+
+// app.off('keypress', () => { console.log("tchau") });
