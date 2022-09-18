@@ -1,4 +1,4 @@
-export function convertHourStringToMinutes(hourString: string) {
+export function convertMinutesToHourString(hourString: string) {
     const [hours, minutes] = hourString.split(':').map(Number)
 
     const minutesAmount = (hours * 60) + minutes;
