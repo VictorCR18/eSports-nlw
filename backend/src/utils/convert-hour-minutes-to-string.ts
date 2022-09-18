@@ -1,8 +1,7 @@
-export function convertHourStringToMinutes(minutesAmount: number) {
+export function convertHourStringToMinutes(hourString: string) {
+    const [hours, minutes] = hourString.split(':').map(Number)
 
-    const hours = Math.floor(minutesAmount / 60);
+    const minutesAmount = (hours * 60) + minutes;
 
-    const minutes = minutesAmount / 60;
-
-    return `${String(hours).padStart( 2, '0')}:${String(minutes).padStart( 2, '0')}`;
+    return minutesAmount;
 }

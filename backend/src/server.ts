@@ -2,7 +2,7 @@ import express from "express";
 import cors from 'cors';
 
 import { PrismaClient } from "@prisma/client";
-import { convertHourStringToMinutes } from './utils/convert-hour-minutes-to-string';
+import { convertHourStringToMinutes } from "./utils/convert-hour-minutes-to-string";
 import { convertMinutesToHourString } from "./utils/convert-minutes-hour-to-string";
 
 const app = express();
@@ -40,8 +40,8 @@ app.post('/games/:id/ads', async (request, response) => {
             yearsPlaying: body.yearsPlaying,
             discord: body.discord,
             weekDays: body.weekDays.join(','),
-            hourStart: convertMinutesToHourString(body.hourStart),
-            hourEnd: convertMinutesToHourString(body.hourEnd),
+            hourStart: convertHourStringToMinutes(body.hourStart),
+            hourEnd: convertHourStringToMinutes(body.hourEnd),
             useVoiceChannel: body.useVoiceChannel,
         }
     });
@@ -74,8 +74,8 @@ app.get('/games/:id/ads', async (request, response) => {
         return {
             ...ad,
             weekDays: ad.weekDays.split(','),
-            hourStart: convertHourStringToMinutes(ad.hourStart),
-            hourEnd: convertHourStringToMinutes(ad.hourEnd),
+            hourStart: convertMinutesToHourString(ad.hourStart),
+            hourEnd: convertMinutesToHourString(ad.hourEnd),
         }
     }));
 });
@@ -100,5 +100,3 @@ app.get('/ads/:id/discord', async (request, response) => {
 app.listen(3000, () => {
     console.log("Running in localhost:3000...");
 });
-
-// app.off('keypress', () => { console.log("tchau") });
